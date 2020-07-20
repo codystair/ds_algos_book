@@ -1,4 +1,6 @@
 class Heap
+  attr_reader :data
+
   def initialize
     @data = []
   end
@@ -23,7 +25,7 @@ class Heap
     return (index - 1) / 2
   end
 
-  def insert(value)]
+  def insert(value)
     @data << value
     new_node_index = @data.size - 1
 
@@ -52,7 +54,7 @@ class Heap
   def has_greater_child(index)
     (@data[left_child_index(index)] &&
      @data[left_child_index(index)] > @data[index]) || 
-    (@data[right_child_index(index)]) && 
+    (@data[right_child_index(index)] && 
      @data[right_child_index(index)] > @data[index])
   end
 
@@ -68,3 +70,10 @@ class Heap
     end
   end
 end
+
+heap = Heap.new()
+(1..10).each do |n|
+  heap.insert(n)
+end
+
+p heap.data
