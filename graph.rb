@@ -1,3 +1,21 @@
+class Queue
+  def initialize
+    @data = []
+  end
+
+  def enqueue(value)
+    @data << value
+  end
+
+  def dequeue
+    @data.shift
+  end
+
+  def read
+    @data.first
+  end
+end
+
 class Vertex
   attr_accessor :value, :adjacent_verticies
 
@@ -37,6 +55,27 @@ class Vertex
     end
 
     return nil
+  end
+
+  def bfs_traverse(starting_vertex)
+    queue = Queue.new
+
+    visited_vertices = {}
+    visited_vertices[starting_vertex.value] = true
+    queue.enqueue(starting_vertex)
+
+    while queue.read
+      current_vortex = queue.dequeue
+
+      puts current_vortex.value
+
+      current_vortex.adjacent_vertices.each do |adjacent_vertex|
+        if !visited_vertices[adjacent_vertex.value]
+          visited_vertices[adjacent_vertex.value] = true
+          queue.enqueue(adjacent_vertex)
+        end
+      end
+    end
   end
 end
 
